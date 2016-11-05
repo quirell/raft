@@ -8,11 +8,10 @@ import java.util.ArrayList;
 public class State {
     private int currentTerm;
     private String voteFor;
-    private ArrayList<Entry> log;
+    private ArrayList<Entry> log = new ArrayList<>();
     private int commitIndex;
     private int lastApplied;
     private String leaderId;
-    private String selfId;
 
     public int getCurrentTerm() {
         return currentTerm;
@@ -32,10 +31,6 @@ public class State {
 
     public ArrayList<Entry> getLog() {
         return log;
-    }
-
-    public void setLog(ArrayList<Entry> log) {
-        this.log = log;
     }
 
     public int getCommitIndex() {
@@ -72,13 +67,5 @@ public class State {
 
     public void incremmentCurrentTerm(){
         currentTerm += 1;
-    }
-
-    public String getSelfId() {
-        return selfId;
-    }
-
-    public void setSelfId(String selfId) {
-        this.selfId = selfId;
     }
 }

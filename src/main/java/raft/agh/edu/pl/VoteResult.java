@@ -6,25 +6,30 @@ package raft.agh.edu.pl;
 public class VoteResult implements TermStore{
     private int term;
     private boolean voteGranted;
+    private boolean connectionError;
 
     public VoteResult(int term, boolean voteGranted) {
         this.term = term;
         this.voteGranted = voteGranted;
     }
 
-    public int getTerm() {
-        return term;
+    public VoteResult() {
+        connectionError = true;
     }
 
-    public void setTerm(int term) {
-        this.term = term;
+    public int getTerm() {
+        return term;
     }
 
     public boolean isVoteGranted() {
         return voteGranted;
     }
 
-    public void setVoteGranted(boolean voteGranted) {
-        this.voteGranted = voteGranted;
+    public boolean isConnectionError() {
+        return connectionError;
+    }
+
+    public static VoteResult connectionFailed() {
+        return new VoteResult();
     }
 }

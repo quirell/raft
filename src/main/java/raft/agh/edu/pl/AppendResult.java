@@ -6,25 +6,29 @@ package raft.agh.edu.pl;
 public class AppendResult implements TermStore{
     private int term;
     private boolean success;
-
+    private boolean connectionError;
     public AppendResult(int term, boolean success) {
         this.term = term;
         this.success = success;
+    }
+    private AppendResult(){
+        this.connectionError = true;
     }
 
     public int getTerm() {
         return term;
     }
 
-    public void setTerm(int term) {
-        this.term = term;
-    }
 
     public boolean isSuccess() {
         return success;
     }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
+    public boolean isConnectionError() {
+        return connectionError;
+    }
+
+    public static AppendResult connectionFailed() {
+        return new AppendResult();
     }
 }

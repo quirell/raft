@@ -2,9 +2,6 @@ package raft.agh.edu.pl;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-/**
- * Created by quirell on 04.11.2016.
- */
 public class AppendRequest implements TermStore {
     private int term;
     private String leaderId;
@@ -15,7 +12,7 @@ public class AppendRequest implements TermStore {
     @JsonIgnore
     private String recipient;
 
-    public AppendRequest(int term, String leaderId, int prevLogIndex, int prevLogTerm, KeyValue payload, int leaderCommit, String recipient) {
+    public AppendRequest(String recipient, int term, String leaderId, int prevLogIndex, int prevLogTerm, KeyValue payload, int leaderCommit) {
         this.term = term;
         this.leaderId = leaderId;
         this.prevLogIndex = prevLogIndex;
@@ -52,5 +49,9 @@ public class AppendRequest implements TermStore {
 
     public String getRecipient() {
         return recipient;
+    }
+
+    public boolean isHeartBeat(){
+        return payload == null;
     }
 }

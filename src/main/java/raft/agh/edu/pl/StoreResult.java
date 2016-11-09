@@ -8,11 +8,11 @@ public class StoreResult {
     private boolean success;
     private String redirectUrl;
 
-    private StoreResult() {
+    protected StoreResult() {
         this.success = true;
     }
 
-    private StoreResult(String redirecUrl) {
+    protected StoreResult(String redirectUrl) {
         this.redirectUrl = redirectUrl;
     }
 

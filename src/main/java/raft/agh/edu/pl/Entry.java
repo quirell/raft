@@ -16,15 +16,7 @@ public class Entry {
         return keyValue;
     }
 
-    public void setKeyValue(KeyValue keyValue) {
-        this.keyValue = keyValue;
-    }
-
     public int getTerm() {
         return term;
-    }
-
-    public void setTerm(int term) {
-        this.term = term;
     }
 }

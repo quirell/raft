@@ -11,7 +11,8 @@ public class AppendResult implements TermStore{
         this.term = term;
         this.success = success;
     }
-    private AppendResult(){
+
+    public AppendResult() {
         this.connectionError = true;
     }
 

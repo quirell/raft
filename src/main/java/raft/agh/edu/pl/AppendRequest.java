@@ -2,7 +2,7 @@ package raft.agh.edu.pl;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class AppendRequest implements TermStore {
+public class AppendRequest implements TermStore, Request {
     private int term;
     private String leaderId;
     private int prevLogIndex;
@@ -12,6 +12,15 @@ public class AppendRequest implements TermStore {
     @JsonIgnore
     private String recipient;
 
+    public AppendRequest(int term, String leaderId, int prevLogIndex, int prevLogTerm, KeyValue payload, int leaderCommit) {
+        this.term = term;
+        this.leaderId = leaderId;
+        this.prevLogIndex = prevLogIndex;
+        this.prevLogTerm = prevLogTerm;
+        this.payload = payload;
+        this.leaderCommit = leaderCommit;
+    }
+
     public AppendRequest(String recipient, int term, String leaderId, int prevLogIndex, int prevLogTerm, KeyValue payload, int leaderCommit) {
         this.term = term;
         this.leaderId = leaderId;
@@ -20,6 +29,9 @@ public class AppendRequest implements TermStore {
         this.payload = payload;
         this.leaderCommit = leaderCommit;
         this.recipient = recipient;
+    }
+
+    public AppendRequest() {
     }
 
     @Override
@@ -53,5 +65,15 @@ public class AppendRequest implements TermStore {
 
     public boolean isHeartBeat(){
         return payload == null;
+    }
+
+    @Override
+    public void setRecipient(String recipient) {
+        this.recipient = recipient;
+    }
+
+    @Override
+    public Request clone() {
+        return new AppendRequest(term, leaderId, prevLogIndex, prevLogTerm, payload, leaderCommit);
     }
 }

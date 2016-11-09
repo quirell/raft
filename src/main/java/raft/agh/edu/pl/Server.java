@@ -201,7 +201,7 @@ public class Server {
         boolean replicated = false;
         while (!replicated) {
             for (String server : otherServers) {
-                replicated |= appendEntries(server);
+                replicated &= appendEntries(server);
             }
             updateCommitIndex();
             storeCommitted();

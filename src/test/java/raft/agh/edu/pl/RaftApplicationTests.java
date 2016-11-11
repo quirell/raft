@@ -9,6 +9,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class RaftApplicationTests {
 
+	static {
+		System.setProperty("selfId", "http://localhost:5555");
+	}
+
 	@Test
 	public void contextLoads() {
 	}

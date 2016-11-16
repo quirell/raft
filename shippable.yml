@@ -9,7 +9,6 @@ jdk:
 
 build:
 
-#  on_success:
-#    - ftp -u ftp://shippable:$shipable@54.229.152.51/raft.war $SHIPPABLE_BUILD_DIR/raft-1.0.0-SNAPSHOT.war
-after_success:
-  - ftp -u ftp://shippable:shippable@54.229.152.51/raft.war $SHIPPABLE_BUILD_DIR/raft-1.0.0-SNAPSHOT.war
+  on_success:
+    - echo $shippable
+    - curl  --ftp-create-dirs   -T $SHIPPABLE_BUILD_DIR/raft-1.0.0-SNAPSHOT.war -u shippable:$shippable ftp://54.229.152.51/raft.war

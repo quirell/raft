@@ -16,14 +16,25 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.client.RestTemplate;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import java.util.concurrent.*;
 
 @SpringBootApplication
 public class RaftApplication {
 
     private static final Logger logger = LoggerFactory.getLogger(RaftApplication.class);
-
+    public static String SELF_ID;
 	public static void main(String[] args) {
+        try {
+            InitialContext ctx = new InitialContext();
+            SELF_ID = (String) ctx.lookup( "java:comp/env/selfId" );
+        } catch (NamingException e) {
+            logger.error("selfId not found");
+            return;
+        }
+
 		SpringApplication.run(RaftApplication.class, args);
         Thread.setDefaultUncaughtExceptionHandler((th, tr) -> logger.error("thread exception", tr));
     }

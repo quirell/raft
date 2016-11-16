@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.ConversionService;
@@ -19,13 +21,19 @@ import org.springframework.web.client.RestTemplate;
 import java.util.concurrent.*;
 
 @SpringBootApplication
-public class RaftApplication {
+public class RaftApplication extends SpringBootServletInitializer{
 
     private static final Logger logger = LoggerFactory.getLogger(RaftApplication.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(RaftApplication.class, args);
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(RaftApplication.class);
+    }
+
+
+    public static void main(String[] args) {
         Thread.setDefaultUncaughtExceptionHandler((th, tr) -> logger.error("thread exception", tr));
+        SpringApplication.run(RaftApplication.class, args);
     }
 
 	@Bean

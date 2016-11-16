@@ -10,5 +10,4 @@ jdk:
 build:
 
   on_success:
-    - ls $SHIPPABLE_BUILD_DIR
-    - curl  --ftp-create-dirs   -T $SHIPPABLE_BUILD_DIR/target/raft-1.0.0-SNAPSHOT.war -u shippable:$SHIPPABLE_FTP_PASS ftp://54.229.152.51/raft.war
+    - curl  --ftp-create-dirs   -T $SHIPPABLE_BUILD_DIR/target/raft-1.0.0-SNAPSHOT.war -u shippable:$SHIPPABLE_FTP_PASS ftp://54.229.152.51/raft_build.war

@@ -22,6 +22,7 @@ public class Server {
     private HashMap<String, String> store = new HashMap<>();
     @Value("${servers}")
     private List<String> servers;
+    @Value("${selfId}")
     private String selfId;
     private List<String> otherServers;
     @Autowired
@@ -39,7 +40,6 @@ public class Server {
 
     @PostConstruct
     private void start() {
-        selfId = RaftApplication.SELF_ID;
         otherServers = servers.stream().filter(s -> !s.equals(selfId)).collect(Collectors.toList());
         timer.setElectionCallback(this::convertToCandidate);
         timer.setHeartBeatCallback(this::heartBeat);

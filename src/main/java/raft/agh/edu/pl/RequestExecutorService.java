@@ -27,13 +27,13 @@ public class RequestExecutorService {
     private CompletionService<TermStore> completionService;
     @Value("${servers}")
     private List<String> servers;
+    @Value("${selfId}")
     private String selfId;
     private List<String> otherServers;
     private List<Future<TermStore>> scheduled;
 
     @PostConstruct
     public void init() {
-        selfId = RaftApplication.SELF_ID;
         otherServers = servers.stream().filter(s -> !s.equals(selfId)).collect(Collectors.toList());
     }
 

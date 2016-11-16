@@ -1,4 +1,13 @@
+env:
+  global:
+    - secure: ZI7vHpzKU/HYdWDetTFyRiuZBlxHIvNqm3mZ6UZmyeM5MnDH82R6l53FQG2SG0o9zULMPk8f0pvSowc1E82T9R3Pauhn6pf7HAEAYA+/IZGIL1DXl2YM6gT+kKi6gZq00w820wwg5gDBFJUi0o8bO85eQ8xavEAGtd9uMCNZaQQLWk74WG/CouAHgWSlAJX6JD9y2ciI06mrvaWK1Eb5el6/4MRaf9TVB7dZNGhlmW+yXvS5lY/RcYtiNLaDboHdIFC91moySWcaPvReZnYS/lGHa3vM02LY1s1+zvhmLeTLOB24GH3NIEUXlkqodR2KqIog8lP4eyFECfuOHinYSw==
+
 language: java
 
 jdk:
    - oraclejdk8
+
+build:
+
+  on_success:
+    - ftp -u ftp://shippable:$shipable@54.229.152.51/raft.war $SHIPPABLE_BUILD_DIR/raft-1.0.0-SNAPSHOT.war

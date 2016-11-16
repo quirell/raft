@@ -6,7 +6,7 @@
 	<groupId>raft.agh.edu.pl</groupId>
 	<artifactId>raft</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>raft</name>
 	<description>Demo project for Spring Boot</description>

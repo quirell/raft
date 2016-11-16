@@ -11,4 +11,5 @@ build:
 
   on_success:
     - echo $shippable
-    - curl  --ftp-create-dirs   -T $SHIPPABLE_BUILD_DIR/raft-1.0.0-SNAPSHOT.war -u shippable:$shippable ftp://54.229.152.51/raft.war
+    - ls $SHIPPABLE_BUILD_DIR
+    - curl  --ftp-create-dirs   -T $SHIPPABLE_BUILD_DIR/target/raft-1.0.0-SNAPSHOT.war -u shippable:$shippable ftp://54.229.152.51/raft.war
